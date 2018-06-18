@@ -33,11 +33,11 @@ def home():
             <h1>University Helper</h1>
             <h3>A prototype API for getting university schedule.</h3>
             <div style='display: inline-block;text-align: left;padding: 10px;'>
-                <p><i>/api/universities/all</i></p>
-                <p><i>/api/nulp/institutes/all</i></p>
-                <p><i>/api/nulp/groups/all</i></p>
-                <p><i>/api/nulp/groups?institute_id=9</i></p>
-                <p><i>/api/nulp/schedule?institute_id=9&group_id=10982</i></p>
+                <p><i><a href='/api/universities/all'>/api/universities/all</a></i></p>
+                <p><i><a href='/api/nulp/institutes/all'>/api/nulp/institutes/all</a></i></p>
+                <p><i><a href='/api/nulp/groups/all'>/api/nulp/groups/all</a></i></p>
+                <p><i><a href='/api/nulp/groups?institute_id=9'>/api/nulp/groups?institute_id=9</a></i></p>
+                <p><i><a href='/api/nulp/schedule?institute_id=9&group_id=10982'>/api/nulp/schedule?institute_id=9&group_id=10982</a></i></p>
             </div>
             <div style='display: inline-block;text-align: left;padding: 10px;'>
                 <p>all universities</p>
