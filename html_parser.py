@@ -48,7 +48,7 @@ def get_data_from_html(root):
             re.search(r'<br\/>(.*)\n<\/div>', str(root[0])).group(1)
         )
 
-    return None
+    return {"no lesson": True}
 
 
 def one_more_parser(root):
