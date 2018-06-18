@@ -72,10 +72,10 @@ def get_object(item):
         subgroups = item[0].select('td')
 
         if len(subgroups) == 1:
-            return {
+            return [{
                 'thisWeek': get_data_from_html(item[0].select('.vidst')),
                 'nextWeek': get_data_from_html(item[0].select('.vidst'))
-            }
+            }]
         else:
             return [{
                 'thisWeek': get_data_from_html(i.select('.vidst')),
@@ -88,10 +88,10 @@ def get_object(item):
             else:
                 nextWeek = one_more_parser(x)
 
-        return {
+        return [{
             'thisWeek': thisWeek,
             'nextWeek': nextWeek
-        }
+        }]
 
 
 def get_schedule(institute_id, group_id):
