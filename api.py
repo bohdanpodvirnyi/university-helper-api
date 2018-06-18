@@ -7,14 +7,16 @@ import sys
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-all_universities_list = [
-                         {'id': 0,
-                         'name': 'Lviv Polytechnic National University',
-                         'image': 'http://lpnu.ua/sites/all/themes/lpnu/img/logo-md-uk-sprite.png'},
-                         {'id': 1,
-                         'name': 'Lviv National University',
-                         'image': 'http://www.lnu.edu.ua/wp-content/uploads/2015/01/%D0%B3%D0%B5%D1%80%D0%B1.jpg'}
-                         ]
+all_universities_list = [{
+                             'id': 0,
+                             'name': 'Lviv Polytechnic National University',
+                             'image': 'http://lpnu.ua/sites/all/themes/lpnu/img/logo-md-uk-sprite.png'
+                         }, {
+                             'id': 1,
+                             'name': 'Lviv National University',
+                             'image': 'http://www.lnu.edu.ua/wp-content/uploads/2015/01/%D0%B3%D0%B5%D1%80%D0%B1.jpg'
+                         }]
+
 
 def dict_factory(cursor, row):
     d = {}
@@ -22,14 +24,36 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+
 @app.route('/', methods=['GET'])
 def home():
-    return '''<h1>University Helper</h1>
-        <p>A prototype API for getting university schedule.</p>'''
+    return '''
+        <body style='font-family: "Segoe UI Light";text-align: center;padding: 0;margin-bottom: 0;'>
+            <div style='height: 10vh;'></div>
+            <h1>University Helper</h1>
+            <h3>A prototype API for getting university schedule.</h3>
+            <div style='display: inline-block;text-align: left;padding: 10px;'>
+                <p><i>/api/universities/all</i></p>
+                <p><i>/api/nulp/institutes/all</i></p>
+                <p><i>/api/nulp/groups/all</i></p>
+                <p><i>/api/nulp/groups?institute_id=9</i></p>
+                <p><i>/api/nulp/schedule?institute_id=9&group_id=10982</i></p>
+            </div>
+            <div style='display: inline-block;text-align: left;padding: 10px;'>
+                <p>all universities</p>
+                <p>all institutes of nulp</p>
+                <p>all groups of nulp</p>
+                <p>all groups of some institute</p>
+                <p>schedule for some group</p>
+            </div>
+        </body>
+        '''
+
 
 @app.route('/api/universities/all', methods=['GET'])
 def api_all_universities():
     return jsonify(all_universities_list)
+
 
 @app.route('/api/nulp/institutes/all', methods=['GET'])
 def api_nulp_institutes():
@@ -42,6 +66,7 @@ def api_nulp_institutes():
     
     return jsonify(institutes)
 
+
 @app.route('/api/nulp/groups/all', methods=['GET'])
 def api_nulp_allgroups():
     
@@ -52,6 +77,7 @@ def api_nulp_allgroups():
     groups = cur.execute('SELECT * FROM groups;').fetchall()
     
     return jsonify(groups)
+
 
 @app.route('/api/nulp/groups', methods=['GET'])
 def api_nulp_groups():
@@ -70,6 +96,7 @@ def api_nulp_groups():
 
     return jsonify(groups)
 
+
 @app.route('/api/nulp/schedule', methods=['GET'])
 def api_nulp_schedule():
     
@@ -78,6 +105,7 @@ def api_nulp_schedule():
     group_id = query_parameters.get('group_id')
     
     return jsonify(get_schedule(institute_id, group_id))
+
 
 @app.errorhandler(404)
 def page_not_found(e):
