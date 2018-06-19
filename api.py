@@ -50,12 +50,12 @@ def home():
         '''
 
 
-@app.route('/api/universities/all', methods=['GET'])
+@app.route('/api/v1/universities/all', methods=['GET'])
 def api_all_universities():
     return jsonify(all_universities_list)
 
 
-@app.route('/api/nulp/institutes/all', methods=['GET'])
+@app.route('/api/v1/nulp/institutes/all', methods=['GET'])
 def api_nulp_institutes():
     
     connection = sqlite3.connect('nulp.db')
@@ -67,7 +67,7 @@ def api_nulp_institutes():
     return jsonify(institutes)
 
 
-@app.route('/api/nulp/groups/all', methods=['GET'])
+@app.route('/api/v1/nulp/groups/all', methods=['GET'])
 def api_nulp_allgroups():
     
     connection = sqlite3.connect('nulp.db')
@@ -79,7 +79,7 @@ def api_nulp_allgroups():
     return jsonify(groups)
 
 
-@app.route('/api/nulp/groups', methods=['GET'])
+@app.route('/api/v1/nulp/groups', methods=['GET'])
 def api_nulp_groups():
     
     query_parameters = request.args
@@ -97,7 +97,7 @@ def api_nulp_groups():
     return jsonify(groups)
 
 
-@app.route('/api/nulp/schedule', methods=['GET'])
+@app.route('/api/v1/nulp/schedule', methods=['GET'])
 def api_nulp_schedule():
     
     query_parameters = request.args
